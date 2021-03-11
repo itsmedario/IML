@@ -44,12 +44,13 @@ y_predicted = reg.predict(X_test)
 print(y_predicted)
 
 # Create np Array for result file
-tmp = []
+results = []
 for id,y in zip(test_data,y_predicted):
-    tmp.append([id[0],y])
+    results.append([int(id[0]),y])
 
-import pandas as pd
-dt = pd.DataFrame(data=tmp)
-dt.to_csv('test_csv.csv', mode='a', index=True,header=["Id", "y"])
+import csv
 
-np.savetxt("result.csv", tmp, delimiter=",", header="ID, y")
+with open('results.csv','w',newline='') as file:
+    writer = csv.writer(file)
+    for i in range (len(results)):
+        writer.writerow(results[i])

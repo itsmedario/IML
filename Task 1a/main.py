@@ -38,9 +38,10 @@ for i, alpha in enumerate(alphas, 0):
     errors[i] = evaluate(y_results_real, y_results_predicted)
 
 print(errors)
-      
 
-#print(reg.score(X_train, y_train))
-# Predict the Results
-#y_predicted = reg.predict(X_test)
-#print(y_predicted)
+import csv
+
+with open('results.csv','w',newline='') as file:
+    writer = csv.writer(file)
+    for i in range (0,5):
+        writer.writerow([errors[i]])
