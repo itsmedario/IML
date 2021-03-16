@@ -25,17 +25,16 @@ alphas = [0.1,1,10,100,200]
 errors = [0] * 5
 
 for i, alpha in enumerate(alphas, 0):
-    y_results_predicted = []
-    y_results_real = []
+    y_errors = []
     for train_index, test_index in kf.split(X):
         X_train, X_test = X[train_index], X[test_index]
         y_train, y_test = y[train_index], y[test_index]
 
         reg = Ridge(alpha=alpha).fit(X_train, y_train)
         y_predicted = reg.predict(X_test)
-        y_results_predicted.append(y_predicted)
-        y_results_real.append(y_test)
-    errors[i] = evaluate(y_results_real, y_results_predicted)
+        y_errors.append(evaluate(y_test, y_predicted))
+
+    errors[i] = np.average(y_errors)
 
 print(errors)
 
