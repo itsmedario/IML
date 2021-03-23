@@ -2,7 +2,12 @@ import numpy as np
 import math
 
 def applyFeatures(row):
-    return np.concatenate((row, list(map((lambda x: x*x), (row))),list(map((lambda x: math.exp(x)), (row))),list(map((lambda x: math.cos(x)), (row))),[1]))
+    return np.concatenate((
+        row, list(map((lambda x: x*x), (row))),
+        list(map((lambda x: math.exp(x)), (row))),
+        list(map((lambda x: math.cos(x)), (row))),
+        [1]
+        ))
 
 # Read the data and remove the first Row
 train_data = np.genfromtxt('train.csv', delimiter = ',') 
