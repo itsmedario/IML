@@ -1,7 +1,7 @@
 import numpy as np
 import math
 
-def makeTransformation(row):
+def applyFeatures(row):
     return np.concatenate((row, list(map((lambda x: x*x), (row))),list(map((lambda x: math.exp(x)), (row))),list(map((lambda x: math.cos(x)), (row))),[1]))
 
 # Read the data and remove the first Row
@@ -16,7 +16,7 @@ y = np.array([row[1] for row in train_data])
 
 from sklearn.linear_model import LinearRegression
 
-X_train = [makeTransformation(row) for row in X]
+X_train = [applyFeatures(row) for row in X]
     
 print(X_train)
 
