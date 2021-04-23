@@ -52,5 +52,6 @@ import csv
 
 with open('results.csv','w',newline='') as file:
     writer = csv.writer(file)
+    writer.writerow(["Id","y"])
     for i in range (len(results)):
         writer.writerow(results[i])
