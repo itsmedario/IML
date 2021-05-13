@@ -43,9 +43,9 @@ for i, line in enumerate(test_data):
         X_test[i][j*len(Alph_Map)+Alph_Map[c]] = 1
 
 
-from sklearn.ensemble import RandomForestClassifier
+from lightgbm import LGBMClassifier
 
-model = RandomForestClassifier(n_estimators=200, max_features=8)
+model = LGBMClassifier(n_estimators=150000, n_jobs=8)
 model.fit(X_train, Y_train)
 
 Y_test = model.predict(X_test)
